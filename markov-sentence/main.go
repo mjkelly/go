@@ -6,15 +6,13 @@
 package main
 
 import (
-	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
 	"math/rand"
 	"os"
 	"sort"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -72,7 +70,7 @@ func (c *Corpus) AddPair(w0 string, w1 string, count int) {
 func (c *Corpus) Pick(prev string) string {
 	f, found := c.F[prev]
 	if !found {
-		log.Fatal("word not found in corpus:", prev)
+		log.Fatalf("word not found in corpus: %q", prev)
 	}
 
 	// This is a relatively dumb algorithm, but it works. It could easily be
@@ -99,29 +97,25 @@ func (c *Corpus) Pick(prev string) string {
 // into the receiver. If this function returns a non-nil error, the ReadStats
 // struct may be incomplete.
 func (corpus *Corpus) ReadCounts(filename string) (error, ReadStats) {
+	counts := make(map[string]map[string]int)
+
 	stats := ReadStats{Name: filename}
 	fh, err := os.Open(filename)
 	if err != nil {
 		return err, stats
 	}
 	defer fh.Close()
+	decoder := json.NewDecoder(fh)
+	decoder.Decode(&counts)
 
-	scanner := bufio.NewScanner(fh)
-	for scanner.Scan() {
-		line := scanner.Text()
-		parts := strings.Split(line, " ")
-		if len(parts) != 3 {
-			return fmt.Errorf("malformed line: does not have 3 parts: %s", line), stats
+	for w0, freqs := range counts {
+		for w1, count := range freqs {
+			corpus.AddPair(w0, w1, count)
+			stats.Pairs++
+			stats.Size += count
 		}
-		w0, w1 := parts[0], parts[1]
-		count, err := strconv.Atoi(parts[2])
-		if err != nil {
-			return fmt.Errorf("malformed line: cannot parse count part (%s): %s", err, line), stats
-		}
-		corpus.AddPair(w0, w1, count)
-		stats.Pairs++
-		stats.Size += count
 	}
+
 	return nil, stats
 }
 

@@ -4,7 +4,7 @@ package main
 
 import (
 	"bufio"
-	"fmt"
+	"encoding/json"
 	"log"
 	"os"
 	"strings"
@@ -77,13 +77,12 @@ func main() {
 		prev = cur
 	}
 
-	// The final output format of the map is simply:
-	//   key1 key2 count
-	// Words cannot contain spaces, so this is safe. 'count' is an integer
-	// count in base 10. One count per line.
-	for prevWord, nextMap := range counts {
-		for nextWord, count := range nextMap {
-			fmt.Println(prevWord, nextWord, count)
-		}
+	// We simply output a JSON representation of the 'counts' data structure
+	// above. When debugging, you may want to use the 'jq' utility to format this
+	// for easy reading.
+	b, err := json.Marshal(counts)
+	if err != nil {
+		log.Fatal("JSON marshalling error:", err)
 	}
+	os.Stdout.Write(b)
 }
