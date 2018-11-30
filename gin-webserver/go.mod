@@ -1,12 +1,11 @@
 module github.com/mjkelly/go/gin-webserver
 
 require (
-	github.com/gin-contrib/sse v0.0.0-20170109093832-22d885f9ecc7
-	github.com/gin-gonic/gin v0.0.0-20170702092826-d459835d2b07
-	github.com/golang/protobuf v0.0.0-20180328163153-e09c5db29600
-	github.com/mattn/go-isatty v0.0.4
-	github.com/ugorji/go v0.0.0-20180307152341-02537d3a3e32
-	golang.org/x/sys v0.0.0-20180404203733-1d206c9fa897
-	gopkg.in/go-playground/validator.v8 v8.18.2
-	gopkg.in/yaml.v2 v2.2.1
+	github.com/gin-contrib/sse v0.0.0-20170109093832-22d885f9ecc7 // indirect
+	github.com/gin-gonic/gin v1.3.0
+	github.com/golang/protobuf v1.2.0 // indirect
+	github.com/mattn/go-isatty v0.0.4 // indirect
+	github.com/ugorji/go/codec v0.0.0-20181127175209-856da096dbdf // indirect
+	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
+	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
