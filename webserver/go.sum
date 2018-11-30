@@ -1,0 +1,6 @@
+github.com/abbot/go-http-auth v0.4.0 h1:QjmvZ5gSC7jm3Zg54DqWE/T5m1t2AfDu6QlXJT0EVT0=
+github.com/abbot/go-http-auth v0.4.0/go.mod h1:Cz6ARTIzApMJDzh5bRMSUou6UMSp0IEXg9km/ci7TJM=
+golang.org/x/crypto v0.0.0-20180403160946-b2aa35443fbc h1:Kx1Ke+iCR1aDjbWXgmEQGFxoHtNL49aRZGV7/+jJ41Y=
+golang.org/x/crypto v0.0.0-20180403160946-b2aa35443fbc/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/net v0.0.0-20180404174746-b3c676e531a6 h1:mge3qS/eMvcfyIAzTMOAy0XUzWG6Lk0N4M8zjuSmdco=
+golang.org/x/net v0.0.0-20180404174746-b3c676e531a6/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
