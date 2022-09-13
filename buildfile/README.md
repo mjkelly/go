@@ -23,6 +23,32 @@ Then the output is:
 Hello buildfile user
 ```
 
+You can specify as many templates as you want -- their output will be concatenated in the order they're provided. That means:
+```
+./buildfile -v Name="buildfile user" t1.tmpl t1.tmpl
+```
+outputs
+```
+Hello buildfile user
+Hello buildfile user
+```
+
+You can also take input from a file, like this:
+```
+./buildfile -v Name@=namefile t1.tmpl
+```
+
+Here's an example
+```
+echo "my name" > namefile
+./buildfile -v Name@=namefile t1.tmpl
+```
+output:
+```
+Hello my name
+
+```
+
 ## Building
 
 ```

@@ -59,7 +59,7 @@ func keysValues(strs []string) (map[string]string, error) {
 }
 
 func main() {
-	flag.Var(&values, "v", "Key/value args to pass into generated template.")
+	flag.Var(&values, "v", "Key/value args: <key>=<value> or <key>@=<filename>")
 	flag.Parse()
 	vars, err := keysValues(values)
 	if err != nil {
