@@ -49,7 +49,7 @@ func keysValues(strs []string) (map[string]string, error) {
 			if err != nil {
 				return nil, fmt.Errorf("[item %d] %s: %v", i, s, err)
 			}
-			result[cleanKey] = string(b)
+			result[cleanKey] = strings.TrimSpace(string(b))
 		} else {
 			// Case 1
 			result[key] = value
